@@ -1,23 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const options = ["Yes", "Probably Not", "No"];
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  useEffect(() => {
+    document.body.style.backgroundColor = "rgb(43, 175, 199)";
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "20px",
+        }}
+      >
+        <h2>React Dropdown Example</h2>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "20px",
+        }}
+      >
+        <select
+          value={selectedOption}
+          onChange={handleOptionChange}
+          style={{
+            height: "3.5rem",
+            width: "15rem",
+            border: "2px solid red",
+            borderRadius: "5px",
+            fontSize: "25px",
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <option value="">Select </option>
+          {options.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 }
